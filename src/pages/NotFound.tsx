@@ -5,18 +5,22 @@ const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    console.error(
+      "404 Error: User attempted to access non-existent route:",
+      location.pathname
+    );
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
-        <a href="/" className="text-primary underline hover:text-primary/90">
-          Return to Home
-        </a>
-      </div>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-pink-50 text-center px-4">
+      <h1 className="font-display text-6xl text-pink-600 mb-4">404</h1>
+      <p className="font-display text-xl text-gray-600 mb-8">Oops! Page not found</p>
+      <a 
+        href="/" 
+        className="text-pink-600 hover:text-pink-800 underline font-body"
+      >
+        Return to Wedding Invitation
+      </a>
     </div>
   );
 };
