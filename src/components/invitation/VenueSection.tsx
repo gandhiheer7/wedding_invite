@@ -4,7 +4,7 @@ import OrnamentalDivider from './OrnamentalDivider';
 
 export const VenueSection = () => {
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
+    <section className="relative pt-0 pb-0 overflow-hidden">
       {/* Background with warm gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-secondary via-card to-background" />
       
@@ -77,16 +77,6 @@ export const VenueSection = () => {
               <span>View on Map</span>
             </motion.div>
           </motion.div>
-        </ScrollReveal>
-
-        {/* Travel note */}
-        <ScrollReveal delay={0.4} className="mt-12 text-center">
-          <p className="font-body text-muted-foreground text-lg">
-            The nearest airport is Maharana Pratap Airport (UDR), Udaipur
-          </p>
-          <p className="font-body text-muted-foreground mt-2">
-            Accommodation arrangements will be shared separately
-          </p>
         </ScrollReveal>
       </div>
     </section>

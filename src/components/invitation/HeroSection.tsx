@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import OrnamentalDivider from './OrnamentalDivider';
-import coupleHero from '@/assets/couple-hero.jpg';
 
 export const HeroSection = () => {
   const sectionRef = useRef(null);
@@ -19,9 +18,10 @@ export const HeroSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col overflow-hidden"
+      // Professional Spacing: 85% height + 20 units of bottom padding
+      className="relative w-full min-h-[85vh] flex flex-col items-center justify-center overflow-hidden pb-20"
     >
-      {/* Hero Image with Parallax */}
+      {/* Background: Shades of Pink Gradient */}
       <motion.div 
         className="absolute inset-0 z-0"
         style={{ y: backgroundY }}
@@ -30,14 +30,8 @@ export const HeroSection = () => {
           className="absolute inset-0"
           style={{ scale: imageScale, opacity: imageOpacity }}
         >
-          <img 
-            src={coupleHero} 
-            alt="Priya and Arjun" 
-            className="w-full h-full object-cover object-center"
-          />
-          {/* Warm gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
+          <div className="w-full h-full bg-gradient-to-br from-pink-100 via-rose-200 to-pink-300" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background" />
         </motion.div>
       </motion.div>
       
@@ -57,12 +51,11 @@ export const HeroSection = () => {
 
       {/* Main content */}
       <motion.div 
-        className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-6 max-w-4xl mx-auto pt-20"
+        className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-6 max-w-4xl mx-auto pt-24"
         style={{ y: textY, opacity }}
       >
-        {/* Blessing text */}
         <motion.p
-          className="font-display text-lg md:text-xl text-foreground/90 mb-6 tracking-wide drop-shadow-sm"
+          className="font-display text-lg md:text-xl text-foreground/80 mb-6 tracking-wide drop-shadow-sm"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
@@ -72,23 +65,23 @@ export const HeroSection = () => {
 
         <OrnamentalDivider variant="lotus" className="mb-8" />
 
-        {/* Main announcement */}
+        {/* Refined Text */}
         <motion.h2
-          className="font-display text-2xl md:text-3xl text-foreground/90 mb-4 tracking-wide drop-shadow-sm"
+          className="font-display text-2xl md:text-3xl text-foreground/90 mb-3 tracking-wide drop-shadow-sm"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          Request the pleasure of your company
+          Counting down the moments
         </motion.h2>
 
         <motion.p
-          className="font-display text-xl md:text-2xl text-foreground/70 mb-8"
+          className="font-display text-xl md:text-2xl text-foreground/70 mb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.7 }}
         >
-          at the wedding celebration of
+          until we celebrate the union of
         </motion.p>
 
         {/* Couple names */}
@@ -99,7 +92,7 @@ export const HeroSection = () => {
           transition={{ duration: 1.2, delay: 0.9 }}
         >
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-medium gold-shimmer mb-4 drop-shadow-lg">
-            Priya
+            Sakshi
           </h1>
           <motion.span 
             className="font-display text-2xl md:text-3xl text-primary block my-4 drop-shadow-sm"
@@ -110,13 +103,13 @@ export const HeroSection = () => {
             &
           </motion.span>
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-medium gold-shimmer drop-shadow-lg">
-            Arjun
+            Pal
           </h1>
         </motion.div>
 
         <OrnamentalDivider variant="elaborate" className="my-10" />
 
-        {/* Date announcement */}
+        {/* Date & Location */}
         <motion.div
           className="glass rounded-2xl px-8 py-6 inline-block shadow-elevated"
           initial={{ opacity: 0, y: 30 }}
@@ -124,16 +117,16 @@ export const HeroSection = () => {
           transition={{ duration: 1, delay: 1.4 }}
         >
           <p className="font-display text-xl md:text-2xl text-foreground tracking-widest">
-            February 14 – 16, 2025
+            January 25, 2026
           </p>
           <p className="font-body text-muted-foreground mt-2">
-            Udaipur, Rajasthan
+            Centre Park Ground, Mira Road (East)
           </p>
         </motion.div>
 
         {/* Scroll indicator */}
         <motion.div
-          className="mt-16 md:mt-20"
+          className="mt-8 md:mt-12"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}

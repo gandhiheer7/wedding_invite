@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { MapPin } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 
 interface EventCardProps {
@@ -7,102 +8,82 @@ interface EventCardProps {
   time: string;
   venue: string;
   description: string;
-  icon: 'mehendi' | 'sangeet' | 'wedding' | 'reception';
+  icon: 'haldi' | 'sangeet' | 'wedding';
+  mapLink: string;
   delay?: number;
 }
 
 const icons = {
-  mehendi: (
-    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
-      <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-      <path d="M24 8 Q32 16, 32 24 Q32 32, 24 40 Q16 32, 16 24 Q16 16, 24 8" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M18 24 Q24 18, 30 24" stroke="currentColor" strokeWidth="1" fill="none" />
-      <path d="M18 28 Q24 22, 30 28" stroke="currentColor" strokeWidth="1" fill="none" />
-      <circle cx="24" cy="24" r="3" fill="currentColor" opacity="0.6" />
+  haldi: (
+    <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <circle cx="12" cy="12" r="9" className="opacity-50" />
+      <path d="M12 7v10M7 12h10" />
+      <path d="M12 3v2M12 19v2M3 12h2M19 12h2" className="opacity-50" />
     </svg>
   ),
   sangeet: (
-    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
-      <ellipse cx="30" cy="32" rx="10" ry="8" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M40 32 L40 12 L42 8 L42 12" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M42 12 L45 10" stroke="currentColor" strokeWidth="1" />
-      <path d="M42 14 L45 13" stroke="currentColor" strokeWidth="1" />
-      <path d="M10 18 Q14 24, 10 30" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
-      <path d="M14 16 Q18 24, 14 32" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
+    <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M9 18V5l12-2v13" />
+      <circle cx="6" cy="18" r="3" />
+      <circle cx="18" cy="16" r="3" />
     </svg>
   ),
   wedding: (
-    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
-      <path d="M24 8 L28 20 L40 20 L30 28 L34 40 L24 32 L14 40 L18 28 L8 20 L20 20 Z" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <circle cx="24" cy="24" r="6" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-      <circle cx="24" cy="24" r="2" fill="currentColor" opacity="0.6" />
-    </svg>
-  ),
-  reception: (
-    <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
-      <ellipse cx="24" cy="36" rx="16" ry="4" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M12 36 L12 20 Q12 12, 24 12 Q36 12, 36 20 L36 36" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M24 12 L24 6" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="24" cy="4" r="2" fill="currentColor" opacity="0.6" />
-      <path d="M18 24 Q24 20, 30 24" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+    <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M19 14c1.49-1.28 3.6-2.34 3.6-4.74A5.74 5.74 0 0 0 16.86 4c-2.27 0-4.04 1.25-4.86 3A5.73 5.73 0 0 0 7.14 4c-2.8 0-5.14 2.57-5.14 5.26c0 2.4 2.11 3.46 3.6 4.74" />
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" className="opacity-50" />
     </svg>
   ),
 };
 
-export const EventCard = ({ title, date, time, venue, description, icon, delay = 0 }: EventCardProps) => {
+export const EventCard = ({ title, date, time, venue, description, icon, mapLink, delay = 0 }: EventCardProps) => {
   return (
     <ScrollReveal delay={delay} direction="up">
       <motion.div 
-        className="glass rounded-3xl p-8 md:p-10 relative overflow-hidden group"
+        className="glass rounded-3xl p-8 md:p-10 relative overflow-hidden group border border-white/20"
         whileHover={{ scale: 1.02, y: -4 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        {/* Decorative background accent */}
-        <div className="absolute top-0 right-0 w-32 h-32 opacity-10 pointer-events-none">
-          <div className="text-gold transform translate-x-8 -translate-y-8">
-            {icons[icon]}
-          </div>
-        </div>
-
         {/* Icon */}
         <motion.div 
-          className="w-16 h-16 text-gold mb-6"
-          whileHover={{ rotate: 5, scale: 1.1 }}
-          transition={{ duration: 0.3 }}
+          className="w-12 h-12 text-pink-500 mb-6"
+          whileHover={{ rotate: 10, scale: 1.1 }}
         >
           {icons[icon]}
         </motion.div>
 
         {/* Title */}
-        <h3 className="font-display text-3xl md:text-4xl gold-text mb-4">
+        <h3 className="font-display text-3xl md:text-4xl text-pink-600 mb-4">
           {title}
         </h3>
 
         {/* Date & Time */}
-        <div className="flex flex-wrap gap-4 mb-4 text-foreground/80">
-          <span className="font-display text-lg">{date}</span>
-          <span className="text-gold">•</span>
+        <div className="flex flex-wrap gap-4 mb-4 text-gray-700">
+          <span className="font-display text-lg font-medium">{date}</span>
+          <span className="text-pink-400">•</span>
           <span className="font-display text-lg">{time}</span>
         </div>
 
         {/* Venue */}
-        <p className="font-body text-muted-foreground mb-4">
+        <p className="font-body text-gray-600 mb-6 leading-relaxed">
           {venue}
         </p>
 
+        {/* Map Button */}
+        <a 
+          href={mapLink} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm font-medium text-pink-600 hover:text-pink-700 transition-colors"
+        >
+          <MapPin className="w-4 h-4" />
+          <span>View Location</span>
+        </a>
+
         {/* Description */}
-        <p className="font-body text-foreground/70 leading-relaxed">
+        <p className="font-body text-gray-500 mt-6 leading-relaxed text-sm">
           {description}
         </p>
-
-        {/* Bottom accent line */}
-        <motion.div 
-          className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold/40 to-transparent"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: delay + 0.3 }}
-        />
       </motion.div>
     </ScrollReveal>
   );
