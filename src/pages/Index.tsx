@@ -4,6 +4,7 @@ import HeroSection from '@/components/invitation/HeroSection';
 import EventsSection from '@/components/invitation/EventsSection';
 import VenueSection from '@/components/invitation/VenueSection';
 import ClosingSection from '@/components/invitation/ClosingSection';
+import MusicPlayer from '@/components/invitation/MusicPlayer';
 
 const Index = () => {
   useEffect(() => {
@@ -19,6 +20,9 @@ const Index = () => {
 
   return (
     <main className="relative min-h-screen bg-background overflow-x-hidden scrollbar-hide">
+      {/* Background music player */}
+      <MusicPlayer />
+      
       {/* Floating decorative motifs */}
       <FloatingMotifs />
       
